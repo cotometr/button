@@ -11,9 +11,10 @@ Button::Button(const uint8_t button_pin, const int debounce_delay):
     pinMode(m_button_pin, INPUT);
 }
 
-void Button::set_handler(std::function<void()> handler)
+void Button::set_handler(handler_type handler, void* handler_data)
 {
     m_handler = handler;
+    m_handler_data =handler_data;
 }
 
 void Button::poll()
@@ -34,7 +35,7 @@ void Button::poll()
             m_button_state = reading;
             if (m_button_state == HIGH)
             {
-                m_handler();
+                m_handler(m_handler_data);
             }
         }
     }

@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include <functional>
 #include <USBAPI.h>
 
 class Button
 {
 public:
+    using handler_type = void(void*);
     /**
      * @brief Create object and init pin
      * @param button_pin
@@ -21,7 +21,7 @@ public:
      * @brief Set button press handle
      * @param handler
      */
-    void set_handler(std::function<void()> handler);
+    void set_handler(handler_type handler, void* handler_data);
 
     /**
      * @brief Poll in loop
@@ -42,5 +42,7 @@ private:
     // the last time the output pin was toggled
     unsigned long m_last_debounce_time = 0;
 
-    std::function<void()> m_handler;
+    handler_type *m_handler;
+
+    void* m_handler_data;
 };
