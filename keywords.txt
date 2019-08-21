@@ -1,0 +1,3 @@
+Button  KEYWORD1
+set_handler  KEYWORD2
+poll  KEYWORD3
