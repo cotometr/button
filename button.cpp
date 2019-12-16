@@ -14,7 +14,7 @@ Button::Button(const uint8_t button_pin, const int debounce_delay):
 void Button::set_handler(handler_type handler, void* handler_data)
 {
     m_handler = handler;
-    m_handler_data =handler_data;
+    m_handler_data = handler_data;
 }
 
 void Button::poll()
